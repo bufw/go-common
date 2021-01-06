@@ -1,6 +1,7 @@
 package gstrings
 
 import (
+	"strconv"
 	"strings"
 )
 
@@ -76,4 +77,12 @@ func ReplaceMap(src string, kvMap map[string]interface{}) string {
 		src = strings.ReplaceAll(src, key, val.(string))
 	}
 	return src
+}
+
+func StringToInt(value string) int {
+	val, err := strconv.Atoi(value)
+	if err != nil {
+		return 0
+	}
+	return val
 }
