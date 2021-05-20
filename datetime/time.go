@@ -5,6 +5,9 @@ import (
 	"time"
 )
 
+//时间库
+//https://github.com/golang-module/carbon
+
 func UnixTimeToDate(sec int64, format string) string {
 	t := time.Unix(sec, 0)
 	return t.Format(format)
@@ -16,4 +19,8 @@ func UnixTimeStringToTime(unixtime string) time.Time {
 		return time.Now()
 	}
 	return time.Unix(unixsec, 0)
+}
+
+func UnixTimestamp() int64 {
+	return time.Now().Unix()
 }

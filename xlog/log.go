@@ -67,17 +67,12 @@ type Logger struct {
 
 }
 
-// New creates a new Logger. The out variable sets the
-// destination to which log data will be written.
-// The prefix appears at the beginning of each generated log line, or
-// after the log header if the Lmsgprefix flag is provided.
-// The flag argument defines the logging properties.
 func New(out io.Writer, prefix string, flag int, rotateSize int64, maxAge int) *Logger {
-	return &Logger{out: out.(*os.File), prefix: prefix, flag: flag, maxAge: 0, rotateSize: 0}
+	return &Logger{out: out.(*os.File), prefix: prefix, flag: flag, maxAge: maxAge, rotateSize: rotateSize}
 }
 
 func NewLogger(filepath string, prefix string, flag int, rotateSize int64, maxAge int) *Logger {
-	l := &Logger{prefix: prefix, flag: flag, maxAge: 0, rotateSize: 0}
+	l := &Logger{prefix: prefix, flag: flag, maxAge: maxAge, rotateSize: rotateSize}
 	l.Rotate(true)
 	return l
 }
